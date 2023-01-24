@@ -1,4 +1,4 @@
-# React Expense Tracker with OCR
+# React Expense Tracker with Receipt OCR
 
 
 
