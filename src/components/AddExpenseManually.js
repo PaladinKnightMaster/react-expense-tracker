@@ -1,52 +1,53 @@
 import React from 'react';
-import { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import { } from 'react-bootstrap-icons';
 
 
 const AddExpenseManually = ({ onShow, onAddExpense, onPrefill }) => {
-    const [form, setForm] = useState({ date: '', store: '', category: '', price: '' })
+
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(e);
         const id = Math.floor(Math.random() * 1000) + 1;
-        onAddExpense({ id, ...form });
-        setForm({ date: '', store: '', category: '', price: '' })
+        onAddExpense({
+            id, date: e.target.date.value,
+            store: e.target.store.value,
+            category: e.target.category.value,
+            price: e.target.price.value
+        });
+
+        e.target.reset();
     }
 
 
     return (
         <>
-
             <Container>
                 <Form onSubmit={onSubmit}>
-                    {onPrefill.date !== '' ?
-                        (<div>
-                            <div>Please add a category and save</div>
-                            <i className="bi bi-x-circle-fill d-flex flex-row-reverse" onClick={onShow} style={{ fontSize: "1.5rem", cursor: "pointer" }}></i>
-                        </div>) :
-                        (<i className="bi bi-x-circle-fill d-flex flex-row-reverse" onClick={onShow} style={{ fontSize: "1.5rem", cursor: "pointer" }}></i>)}
+                    {onPrefill.store !== '' ? <div>Please add a category and save</div> : null}
+                    <div className=" d-flex flex-row-reverse">
+                        <i className="bi bi-x-circle-fill" onClick={onShow} style={{ fontSize: "1.5rem", cursor: "pointer" }}></i>
+                    </div>
 
                     <div className="row">
                         <div className="col">
                             <label htmlFor="date">Date</label>
-                            <input className='form-control' type="date" id="input-date" defaultValue={onPrefill.date} onChange={(e) => { setForm((prev) => ({ ...prev, date: e.target.value })) }}></input>
+                            <input className='form-control' type="date" id="date" name="date" defaultValue={onPrefill.date} />
                         </div>
                         <div className="col">
                             <label htmlFor="text">Store</label>
-                            <input className='form-control' type="text" id="input-store" placeholder="McDonald's" defaultValue={onPrefill.store} onChange={(e) => { setForm((prev) => ({ ...prev, store: e.target.value })) }}></input>
+                            <input className='form-control' type="text" id="store" name="store" placeholder="McDonald's" defaultValue={onPrefill.store} />
                         </div>
                     </div>
 
                     <div className="row">
                         <div className="col">
                             <label htmlFor="text">Category</label>
-                            <input className="form-control" type="text" id="input-category" placeholder="ie. Food or Groceries" defaultValue={form.category} onChange={(e) => { setForm((prev) => ({ ...prev, category: e.target.value })) }}></input>
+                            <input className="form-control" type="text" id="category" name="category" placeholder="ie. Food or Groceries" ></input>
                         </div>
                         <div className="col">
                             <label htmlFor="text">Amount</label>
-                            <input className="form-control" type="number" id="input-number" placeholder='10.99' defaultValue={onPrefill.price} onChange={(e) => { setForm((prev) => ({ ...prev, price: e.target.value })) }}></input>
+                            <input className="form-control" type="decimal" id="price" name="price" placeholder='10.99' defaultValue={onPrefill.price} ></input>
 
                         </div>
                     </div>
@@ -56,20 +57,8 @@ const AddExpenseManually = ({ onShow, onAddExpense, onPrefill }) => {
                     </div>
                 </Form>
             </Container>
-
-
-
-
-
-
-
-
         </>
     )
 }
 
 export default AddExpenseManually
-
-
-
-//  onChange={(e) => { setForm((prev) => ({ ...prev, date: e.target.value })) }}

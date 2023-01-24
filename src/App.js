@@ -40,7 +40,6 @@ function App({ onDelete }) {
       <Navbar />
       <MainContainer onAddExpense={addExpense} />
       <Expenses expenses={expenses['items']} onDelete={deleteExpense} />
-
     </>
   );
 }
