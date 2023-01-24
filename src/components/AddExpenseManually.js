@@ -32,22 +32,22 @@ const AddExpenseManually = ({ onShow, onAddExpense, onPrefill }) => {
                     <div className="row">
                         <div className="col">
                             <label htmlFor="date">Date</label>
-                            <input className='form-control' type="date" id="date" name="date" defaultValue={onPrefill.date} />
+                            <input className='form-control' required type="date" id="date" name="date" defaultValue={onPrefill.date} />
                         </div>
                         <div className="col">
                             <label htmlFor="text">Store</label>
-                            <input className='form-control' type="text" id="store" name="store" placeholder="McDonald's" defaultValue={onPrefill.store} />
+                            <input className='form-control' type="text" required id="store" name="store" placeholder="McDonald's" defaultValue={onPrefill.store} />
                         </div>
                     </div>
 
                     <div className="row">
                         <div className="col">
                             <label htmlFor="text">Category</label>
-                            <input className="form-control" type="text" id="category" name="category" placeholder="ie. Food or Groceries" ></input>
+                            <input className="form-control" type="text" required id="category" name="category" placeholder="ie. Food or Groceries" ></input>
                         </div>
                         <div className="col">
                             <label htmlFor="text">Amount</label>
-                            <input className="form-control" type="decimal" id="price" name="price" placeholder='10.99' defaultValue={onPrefill.price} ></input>
+                            <input className="form-control" type="decimal" required id="price" name="price" placeholder='10.99' defaultValue={onPrefill.price} ></input>
 
                         </div>
                     </div>
